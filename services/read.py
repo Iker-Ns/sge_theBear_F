@@ -1,4 +1,4 @@
-from schema import read_sch
+
 
 def registre():
     users = {
@@ -21,3 +21,4 @@ def registre():
             "age": 40
         }
     }
+    return list(users.values())
