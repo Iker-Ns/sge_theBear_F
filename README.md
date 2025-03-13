@@ -41,4 +41,5 @@ Finalmente entramos a **127.0.0.1:8080/docs** y ejecutamos el endpoint que tenem
 
 ## ACTIVITAT - FASTAPI + BD
 ![Get](imgs/get_users.png)
+
 ![Post](imgs/create_new_user.png)
