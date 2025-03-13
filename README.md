@@ -1,4 +1,6 @@
 # The Bear
+
+## ACTIVITAT - FASTAPI PRIMERES PASSES
 ### Creando los archivos necesarios.
 #### 1. Connection.Py
 
@@ -36,3 +38,7 @@ Con el comando "**uvicorn main:app --reload**" iniciamos el servidor HTTP.
 Finalmente entramos a **127.0.0.1:8080/docs** y ejecutamos el endpoint que tenemos.
 
 ![FastApiResult](imgs/fastapi_result.png)
+
+## ACTIVITAT - FASTAPI + BD
+![Get](imgs/get_users.png)
+![Post](imgs/create_new_user.png)
