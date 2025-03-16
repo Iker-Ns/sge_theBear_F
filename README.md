@@ -1,7 +1,4 @@
-# sge_theBear
-
-- [iker](https://github.com/Iker-Ns/sge_theBear_F/tree/iker)
-- [kim](https://github.com/Iker-Ns/sge_theBear_F/tree/kim)
-- [Ernesto](https://github.com/Iker-Ns/sge_theBear_F/tree/ernesto)
+# Actividad Fastapi + DB
 
 He tenido una cantidad de problemas ridiculos y no he podido mostrar el resultado de mi trabajo
+![image](https://github.com/user-attachments/assets/38e5a833-c009-4890-92d1-95c4bfa698cb)
