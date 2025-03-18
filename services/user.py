@@ -12,20 +12,16 @@ def add_new_user(name:str,email:str, db:Session):
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
-    return {"Created user succesfully"}
+    return {"message": "Created user succesfully"}
 
-def update_user(id:int,name:str,email:str, db:Session):
-    sql_update = select(User).where(User.id == id)
-    results = db.exec(sql_update)
-    user = results.one()
-    user.name = name
-    user.email = email
+def update_user(id:int,name:str, db:Session):
+    sql_update = update(User).where(User.id == id).values(name=name)
+    db.exec(sql_update)
     db.commit()
-    db.refresh(user)
-    return {"Usuario actualizado con exito"}
+    return {"message": "Usuario actualizado con exito"}
 
 def delete_user(id:int, db:Session):
     slq_delete = delete(User).where(User.id == id)
-    results = db.exec(slq_delete)
+    db.exec(slq_delete)
     db.commit()
-    return {"Usuario borrado con exito"}
+    return {"message":"Usuario borrado con exito"}

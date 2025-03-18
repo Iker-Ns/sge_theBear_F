@@ -31,17 +31,17 @@ async def read_user(db: Session = Depends(get_db)):
     result = user.get_all_users(db)
     return result
 
-@app.post("/users/")
+@app.post("/users/",response_model=dict)
 async def create_user(name: str, email: str, db: Session = Depends(get_db)):
     result = user.add_new_user(name, email, db)
     return result
 
-@app.put("/users/")
-async def update_item(id:int, name:str, email:str, db: Session = Depends(get_db)):
-    result = user.update_user(id, name, email, db)
+@app.put("/users/",response_model=dict)
+async def update_item(id:int, name:str, db: Session = Depends(get_db)):
+    result = user.update_user(id, name, db)
     return result
 
-@app.delete("/users/")
+@app.delete("/users/", response_model=dict)
 async def delete_item(id:int, db: Session = Depends(get_db)):
     result = user.delete_user(id, db)
     return result 
