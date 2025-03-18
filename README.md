@@ -11,3 +11,18 @@
 <img src="image3.png"></img>
 <h4>Ejecución del endpoint get read(Comprobación)</h4>
 <img src="image4.png"></img>
+
+# CRUD taula user
+<h4>Update</h4>
+<p>-Usuario seleccionado</p>
+<img src="image-1.png"></img>
+<p>-Ejecución del update</p>
+<img src="image-2.png"></img>
+<p>-Comprobación del update</p>
+<img src="image-3.png"></img>
+<h4>Delete</h4>
+<p>-Ejecución del delete</p>
+<img src="image-4.png"></img>
+<p>-Comprobación del delete</p>
+<img src="image-5.png"></img>
+
