@@ -43,3 +43,14 @@ Finalmente entramos a **127.0.0.1:8080/docs** y ejecutamos el endpoint que tenem
 ![Get](imgs/get_users.png)
 
 ![Post](imgs/create_new_user.png)
+
+## ACTIVITAT - CRUD taula user
+![AllUsers](imgs/crud/all_users.png)
+
+### Update
+![Update](imgs/crud/update_user.png)
+
+### Delete
+![Delete](imgs/crud/delete_user.png)
+
+![ShowResults](imgs/crud/no_users.png)
