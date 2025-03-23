@@ -30,11 +30,11 @@ def create_user(name: str, email: str, db: Session = Depends(get_db)):
     return result
 
 @app.put("/users/{id}", response_model=dict)
-def update_user(id: int, name: str, email: str, db: Session = Depends(get_db)):
-    result = user.uptade_user(id, name, email, db)
+async def update_user(id: int, name: str, email: str, db: Session = Depends(get_db)):
+    result = user.uptade_user(id, name, db)
     return result
 
 @app.delete("/users/{id}", response_model=dict)
-def delete_user(id: int, db: Session = Depends(get_db)):
+async def delete_user(id: int, db: Session = Depends(get_db)):
     result = user.delete_user(id, db)
     return result
