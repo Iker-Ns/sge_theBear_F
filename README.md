@@ -9,3 +9,5 @@ postgres + BD
 ![image](https://github.com/user-attachments/assets/08b5e668-8020-4c03-a4f5-799752a0f381)
 ![image](https://github.com/user-attachments/assets/db04920c-6657-43bf-88cc-ccd6250b5d96)
 
+EL SWAGGER 23/03/2025
+![image](https://github.com/user-attachments/assets/75bd4fa4-d029-42fa-b505-bec40a0ea188)
