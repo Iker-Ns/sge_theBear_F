@@ -28,3 +28,13 @@ async def read_user(db:Session = Depends(get_db)):
 def create_user(name: str, email: str, db: Session = Depends(get_db)):
     result = user.add_new_user(name, email, db)
     return result
+
+@app.put("/users/", response_model=dict)
+async def update_user(search_name: str, new_name:str, new_email: str, db: Session = Depends(get_db)):
+    result = user.update_existing_user(search_name, new_name, new_email, db)
+    return result
+
+@app.delete("/users/", response_model=dict)
+async def delete_user(name: str, db: Session = Depends(get_db)):
+    result = user.delete_user(name, db)
+    return result
