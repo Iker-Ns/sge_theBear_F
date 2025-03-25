@@ -1,6 +1,3 @@
-# Actividad Fastapi + DB
+# Actividad BASE DE DADES
 
-He tenido una cantidad de problemas ridiculos y no he podido mostrar el resultado de mi trabajo
-![image](https://github.com/user-attachments/assets/38e5a833-c009-4890-92d1-95c4bfa698cb)
-
-Sigo con los mismos errores y sin ser capaz de mostrar mis resultados
+![Uploading base de datos_Kim_Iker_Mark_Enresto.drawio.png…]()
