@@ -1,5 +1,3 @@
-# sge_theBear
+# Actividad BASE DE DADES
 
-- [iker](https://github.com/Iker-Ns/sge_theBear_F/tree/iker)
-- [kim](https://github.com/Iker-Ns/sge_theBear_F/tree/kim)
-- [Ernesto](https://github.com/Iker-Ns/sge_theBear_F/tree/ernesto)
+![Uploading base de datos_Kim_Iker_Mark_Enresto.drawio.png…]()
