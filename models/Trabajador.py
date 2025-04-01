@@ -9,13 +9,13 @@ class Trabajador(SQLModel, table=True):
     id  : int
         Identificador del Trabajador (PK, Auto_Increment).
     seguridad_social : int
-        Número de la seguridad social del Trabajador. Campo obligatorio.
+        Número de la seguridad social del Trabajador.
     nombre : str
-        Nombre del Trabajador. Valor obligatorio con una longitud máxima de 50 caracteres.
+        Nombre del Trabajador. Longitud máxima de 50 caracteres.
     apellido : str
-        Apellido del Trabajador. Valor obligatorio con una longitud máxima de 50 caracteres.
+        Apellido del Trabajador. Longitud máxima de 50 caracteres.
     cargo : str
-        Cargo o posición del Trabajador. Valor obligatorio con una longitud máxima de 50 caracteres.
+        Cargo o posición del Trabajador. Longitud máxima de 50 caracteres.
     id_restaurante : int
         FK que referencia al Restaurante asociado.
     """

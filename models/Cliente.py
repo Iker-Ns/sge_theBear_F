@@ -10,13 +10,13 @@ class Cliente(SQLModel, table=True):
     id : int
         Identificador único del cliente (PK, Auto_Increment).
     nombre : str
-        Nombre del cliente. Campo obligatorio con una longitud máxima de 50 caracteres.
+        Nombre del cliente. Longitud máxima de 50 caracteres.
     apellido : str
-        Apellido del cliente. Campo obligatorio con una longitud máxima de 50 caracteres.
+        Apellido del cliente. Longitud máxima de 50 caracteres.
     telefono : str
-        Número de teléfono del cliente. Campo obligatorio con una longitud máxima de 15 caracteres.
+        Número de teléfono del cliente. Longitud máxima de 15 caracteres.
     restaurante : Restaurante
-        FK que referencia al Restaurante asociado. Campo obligatorio..
+        FK que referencia al Restaurante asociado.
     """
     id: int = Field(default=None, primary_key=True)
     nombre: str = Field(max_length=50, nullable=False)

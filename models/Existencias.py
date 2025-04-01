@@ -9,11 +9,11 @@ class Existencias(SQLModel, table=True):
     id : int
         Identificador único de la existencia (PK, Auto_Increment).
     precio_unidad : int
-        Precio por unidad del artículo. Este campo no puede ser nulo.
+        Precio por unidad del artículo.
     nombre : str
-        Nombre del artículo. Tiene una longitud máxima de 50 caracteres y no puede ser nulo.
+        Nombre del artículo. Longitud máxima de 50 caracteres.
     cantidad : int
-        Cantidad disponible del artículo. Este campo es obligatorio.
+        Cantidad disponible del artículo.
     """
     id: int = Field(default=None, primary_key=True)
     precio_unidad: int = Field(nullable=False)

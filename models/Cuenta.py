@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from sqlmodel import SQLModel, Field
 
 class Cuenta(SQLModel, table=True):
@@ -19,4 +19,4 @@ class Cuenta(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
     cliente_id: int = Field(foreign_key="cliente.id", nullable=False) # Cuenta N .. 1 Cliente
     precio_total: int = Field(nullable=False)
-    fecha: datetime = Field(default_factory=lambda: datetime.now())
+    fecha: datetime = Field(default_factory=lambda: datetime.utcnow(timezone.utc))
