@@ -1,4 +1,4 @@
-# sge_theBear
+# SGE TheBear
 
 ## Actividades individuales
 - [Iker](https://github.com/Iker-Ns/sge_theBear_F/tree/iker)
