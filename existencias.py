@@ -15,7 +15,6 @@ nom_fitxer = "existencias.json"
 def menu():
     #Netejem la pantalla
     os.system('cls')            
-    
     #Mostrem les diferents opcions
     print("Gestió existencias")
     print("-------------------------------")
