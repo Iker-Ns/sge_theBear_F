@@ -13,9 +13,11 @@ class Database:
    get_session() -> Generator[Session]
       Devuelve una sesión de conexión a la base de datos.
    """
-   if getenv("DATABASE_URI") is None:
-      logging.warning("No se ha encontrado la variable 'DATABASE_URI', cargando .Env...")
+   if (__name__ == "__main__"):
+      logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%H:%M:%S')
+      logging.debug("Cargando variables de entorno.")
       load_dotenv()
+      logging.debug("Variables de entorno cargadas.")
 
    __uri = getenv("DATABASE_URI")
    __engine = create_engine(__uri)
