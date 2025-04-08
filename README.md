@@ -13,3 +13,4 @@
 - Mark: existencias
 - Kim: trabajadores
 I FALTAN ESTAS DOS: cuenta, productos cuenta 
+
