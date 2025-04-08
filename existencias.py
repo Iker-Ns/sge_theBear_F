@@ -9,20 +9,9 @@ existenciasEjemplo = {
  "cantidad": 200,
  "Precio/unidad" : 15
 }
-
 existencias = [existenciasEjemplo]
+nom_fitxer = "existencias.json"
 
-#Nom del fitxer on desar/carregar dades
-#----------------------------------------
-#nom_fitxer = "existencias.json" 
-#----------------------------------------
-#GUARDEN LA INFORMACIÓ DEL JSON
-#dades = json.load("existencias.json")
-### menu() ###################################################
-#   Aquesta funció mostra el menú d'opcions per pantalla. 
-# 
-#   Retorna (str): l'opció escollida per l'usuari
-##############################################################
 def menu():
     #Netejem la pantalla
     os.system('cls')            
@@ -42,46 +31,25 @@ def menu():
     #i retornem l'opció escollida per l'usuari
     return input()
 
-
-
 ### Programa ################################################
-
-#Fins a l'infinit (i més enllà)
-while True:
-    
+while True:    
     #Executem una opció funció del que hagi escollit l'usuari
     match menu():
-
         # Mostrar existencias ##################################
         case "1":
             os.system('cls')
             print("Mostrar existencias")
             print("-------------------------------")
-            
-           # for existencias in dades:
-           #     print(f"ID: {existencias['id']}")
-           #     print(f"Nom: {existencias['nom']}")
-           #     print(f"Cognom: {existencias['cognom']}")
-            
-            #print("[", alumnoPlantilla["id"], "]", alumnoPlantilla["nom"], alumnoPlantilla["cognom"])
-        
-            #Introduiu el vostre codi per mostrar existencias aquí
-            
             for x in existencias:
                 j = json.dumps(x)
                 print(j)
                 print(type(j)) 
             input()
-
-         
-    
         # Afegir existencias ##################################
         case "2":
             os.system('cls')
             print("Afegir existencias")
             print("-------------------------------")
-            
-            #Introduiu el vostre codi per afegir un existencias aquí
             #DEFINIMOS
             print("Nom de producte") 
             nom_nou = input()
@@ -90,55 +58,55 @@ while True:
             print("preu per unitat")
             preu_nou = input()
             #COMPILAMOS
-            nou_existencias = {"id": (len(existencias)+1), "nom" : nom_nou, "cantitat": cantitat_nou, "Precio/unidad": preu_nou}
+            nou_existencias = {"id": (len(existencias)+1), "nombre" : nom_nou, "cantidad": cantitat_nou, "Precio/unidad": preu_nou}
             #INSERTAMOS
             existencias.append(nou_existencias)
             print("Elemento creado")
         # Veure existencias ##################################
-        #ESTO ESTÁ A MEDIAS--------------------------------------------------------------
         case "3":
             os.system('cls')
             print("Veure existencias")
-            print("-------------------------------")
-            
-            #Introduiu el vostre codi per veure un existencias aquí
-            print("Selecciona ID de l'existencias") 
-            ID = input()
-            j = json.dumps(ID)
-            print(j)
-            print(type(j))
-            #SELECCIONAR CON LA ID ALUMNO Y MOSTRARLO------------------------------------------------------------------------
-
-
-            input()
-
+            print("-------------------------------")            
+            id_Existencia = int(input("Selecciona ID de l'existencias: ")) 
+            existencia = next((a for a in existencias if a["id"] == id_Existencia), None)
+            if existencia:
+                print(f"ID: {existencia['id']}, nombre: {existencia['nombre']}, cantidad: {existencia['cantidad']}, Precio/unidad: {existencia['Precio/unidad']}")
+            else:
+                print("fuerda de rango")
+            input()        
         # Esborrar existencias ##################################
         case "4":
             os.system('cls')
             print("Esborrar existencias")
             print("-------------------------------")
-          
-            #Introduiu el vostre codi per esborrar un existencias aquí
-            print("Selecciona ID que eliminar") 
-            #TAMPOCO FUNCIONA----------------------------------------------------------------------------------------
-            existencias.pop(input())
+            try:
+                id_Existencia = int(input("Selecciona ID que vols eliminar: "))
+                # Busquem l'índex de l'element amb l'ID donat
+                index = next((i for i, x in enumerate(existencias) if x["id"] == id_Existencia), None)
+                
+                if index is not None:
+                    existencias.pop(index)
+                    print("Existència esborrada correctament!")
+                else:
+                    print("No s'ha trobat cap existència amb aquest ID.")
+            except ValueError:
+                print("ID no vàlid.")
             input()
-
         # Editar existencias ##################################
         case "5":
             os.system('cls')
             print("Editar existencias")
             print("-------------------------------")
-          
-            for existenciasEjemplo in existencias:
-                print("elegir tabla")
-                if existenciasEjemplo["id"] == input():
-                    print("elegir elemento a editar y el valor final")
-                    existenciasEjemplo[input()] = input()
 
-            #Introduiu el vostre codi per esborrar un existencias aquí
-            print("Selecciona ID que editar") 
-            existencias.pop(input())
+            selectedName = input("Nombre de la existencia: ")
+            for existenciasEjemplo in existencias:
+                
+                if existenciasEjemplo["nombre"] == selectedName:
+                    selectedKey = input("elegir elemento a editar: ")
+                    selectedValue = input("Nuevo valor: ")
+                    existenciasEjemplo[selectedKey] = selectedValue
+                    print("valor actualizado")
+
             input()
 
         # Sortir ##################################
@@ -153,3 +121,12 @@ while True:
         case _:
             print("\nOpció incorrecta\a")            
             input()
+    
+    def desar_dades():
+        os.system('cls')
+        print("Desar a fitxer")
+        print("-------------------------------")
+        #Introduiu el vostre codi per desar a fitxer aquí
+        #????????????????????????????????????????????
+        with open(nom_fitxer, "w") as f:
+            json.dump(existencias, f, indent=4)
