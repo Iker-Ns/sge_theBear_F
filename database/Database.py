@@ -34,6 +34,7 @@ class Database:
    def __new__(cls):
       raise TypeError("Esta clase no se puede instanciar, usa get_session() para obtener una sesión de conexión a la base de datos.")
    
+# Solo para pruebas.
 if __name__ == "__main__":
-   # Solo para pruebas.
-   session = Database.get_session()
+   with Database.get_session() as session:
+      logging.debug("Se ha creado una sesión de conexión a la base de datos.")
