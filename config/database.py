@@ -24,4 +24,4 @@ class Database:
          session.close()
 
    def __new__(cls):
-      raise TypeError("This class cannot be instantiated")
+      raise TypeError("Esta clase no se puede instanciar, usa get_session() para obtener una sesión de conexión a la base de datos.")
