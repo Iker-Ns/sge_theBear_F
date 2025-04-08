@@ -6,12 +6,12 @@ import logging
 
 class Database:
    """
-   Permite conectar a la base de datos.
+   Permite conectarse a la base de datos.
 
    Funciones
    ---------
    get_session() -> Generator[Session]
-      Devuelve una sesión de conexión a la base de datos.
+      Devuelve una sesión de la base de datos.
    """
    if (__name__ == "__main__"):
       logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%H:%M:%S')
@@ -37,4 +37,4 @@ class Database:
 # Solo para pruebas.
 if __name__ == "__main__":
    session = Database.get_session()
-   logging.debug("Conexión a la base de datos establecida.")
+   logging.debug("Conexión con la base de datos establecida.")
