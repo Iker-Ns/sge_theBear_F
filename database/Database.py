@@ -36,5 +36,5 @@ class Database:
    
 # Solo para pruebas.
 if __name__ == "__main__":
-   with Database.get_session() as session:
-      logging.debug("Se ha creado una sesión de conexión a la base de datos.")
+   session = Database.get_session()
+   logging.debug("Conexión a la base de datos establecida.")
