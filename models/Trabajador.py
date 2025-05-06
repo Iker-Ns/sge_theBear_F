@@ -1,4 +1,5 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
+from Restaurante import Restaurante
 
 class Trabajador(SQLModel, table=True):
     """
@@ -25,3 +26,4 @@ class Trabajador(SQLModel, table=True):
     apellido: str = Field(max_length=50, nullable=False)
     cargo: str = Field(max_length=50, nullable=False)
     id_restaurante: int = Field(foreign_key="restaurante.id", nullable=False) # Trabajadores N .. 1 Restaurante
+    restaurante : Restaurante = Relationship()
