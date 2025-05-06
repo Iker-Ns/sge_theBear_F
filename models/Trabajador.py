@@ -24,4 +24,4 @@ class Trabajador(SQLModel, table=True):
     nombre: str = Field(max_length=50, nullable=False)
     apellido: str = Field(max_length=50, nullable=False)
     cargo: str = Field(max_length=50, nullable=False)
-    id_restaurante = Field(foreign_key="restaurante.id", nullable=False) # Trabajadores N .. 1 Restaurante
+    id_restaurante: int = Field(foreign_key="restaurante.id", nullable=False) # Trabajadores N .. 1 Restaurante
