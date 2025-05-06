@@ -1,5 +1,5 @@
 from sqlmodel import Session, select
-from schema.restaurantes_sch import schema
+from schema.restaurantes_sch import schema, schemas
 from models.Restaurante import Restaurante
 
 def crear_restaurante(nombre, direccion, telefono, database : Session):
@@ -12,6 +12,16 @@ def crear_restaurante(nombre, direccion, telefono, database : Session):
     database.refresh(restaurante_nuevo)
     return { 
         "Result" : schema(restaurante_nuevo)
+    }
+
+def listar_restaurantes(database : Session):
+    """
+    Lista todos los restaurantes en la base de datos.
+    """
+    statement = select(Restaurante)
+    restaurantes = database.exec(statement).all()
+    return { 
+        "Result" : schemas(restaurantes)
     }
 
 def leer_restaurante(id, database : Session):
