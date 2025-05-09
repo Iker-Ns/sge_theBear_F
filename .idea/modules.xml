@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/sge_theBear_F.iml" filepath="$PROJECT_DIR$/.idea/sge_theBear_F.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../sge_the_bear_frontend-main/.idea/sge_the_bear_frontend-main.iml" filepath="$PROJECT_DIR$/../sge_the_bear_frontend-main/.idea/sge_the_bear_frontend-main.iml" />
+    </modules>
+  </component>
+</project>

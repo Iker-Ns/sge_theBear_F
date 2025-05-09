@@ -5,36 +5,40 @@ from sqlmodel import Session, create_engine, SQLModel
 import logging
 
 class Database:
-   """
-   Permite conectar a la base de datos.
+    """
+    Permite conectar a la base de datos.
+    """
+    # Inicialización de variables de clase
+    __engine = None
+    __uri = None
 
-   Funciones
-   ---------
-   get_session() -> Generator[Session]
-      Devuelve una sesión de conexión a la base de datos.
-   """
-   if (__name__ == "__main__"):
-      logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%H:%M:%S')
-      logging.debug("Cargando variables de entorno.")
-      load_dotenv()
-      logging.debug("Variables de entorno cargadas.")
+    @classmethod
+    def init_db(cls):
+        if cls.__engine is None:
+            load_dotenv()
+            cls.__uri = getenv("DATABASE_URI")
 
-   __uri = getenv("DATABASE_URI")
-   __engine = create_engine(__uri)
-   SQLModel.metadata.create_all(__engine) #Crea las tablas en la base de datos si no existen.
+            if not cls.__uri:
+                raise ValueError("DATABASE_URI no está configurada en .env")
 
-   @staticmethod
-   def get_session() -> Generator[Session]:
-      session = Session(Database.__engine)
-      try:
-         yield session
-      finally:
-         session.close()
+            try:
+                cls.__engine = create_engine(cls.__uri)
+                SQLModel.metadata.create_all(cls.__engine)
+                logging.info("Base de datos inicializada correctamente")
+            except Exception as e:
+                logging.error(f"Error al inicializar la base de datos: {e}")
+                raise
 
-   def __new__(cls):
-      raise TypeError("Esta clase no se puede instanciar, usa get_session() para obtener una sesión de conexión a la base de datos.")
-   
-# Solo para pruebas.
-if __name__ == "__main__":
-   session = Database.get_session()
-   logging.debug("Conexión a la base de datos establecida.")
+    @classmethod
+    def get_session(cls) -> Generator[Session, None, None]:
+        if cls.__engine is None:
+            cls.init_db()
+
+        session = Session(cls.__engine)
+        try:
+            yield session
+        finally:
+            session.close()
+
+    def __new__(cls):
+        raise TypeError("Esta clase no se puede instanciar, usa get_session()")

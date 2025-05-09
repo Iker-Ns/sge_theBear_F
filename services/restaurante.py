@@ -2,11 +2,11 @@ from sqlmodel import Session, select
 from schema.restaurantes_sch import schema, schemas
 from models.Restaurante import Restaurante
 
-def crear_restaurante(nombre, direccion, telefono, database : Session):
+def crear_restaurante(nombre, direccion, codigo_postal, database : Session):
     """
     Crea un nuevo restaurante con los datos proporcionados.
     """
-    restaurante_nuevo = Restaurante(nombre=nombre, direccion=direccion, telefono=telefono)
+    restaurante_nuevo = Restaurante(nombre=nombre, direccion=direccion, codigo_postal=codigo_postal)
     database.add(restaurante_nuevo)
     database.commit()
     database.refresh(restaurante_nuevo)
@@ -20,7 +20,7 @@ def listar_restaurantes(database : Session):
     """
     statement = select(Restaurante)
     restaurantes = database.exec(statement).all()
-    return { 
+    return {
         "Result" : schemas(restaurantes)
     }
 
@@ -39,7 +39,7 @@ def leer_restaurante(id, database : Session):
             "Error" : "Restaurante no encontrado"
         }
 
-def actualizar_restaurante(id, nombre, direccion, telefono, database : Session):
+def actualizar_restaurante(id, nombre, direccion, codigo_postal, database : Session):
     """
     Actualiza un restaurante existente con los nuevos datos proporcionados.
     """
@@ -48,7 +48,7 @@ def actualizar_restaurante(id, nombre, direccion, telefono, database : Session):
     if restaurante:
         restaurante.nombre = nombre
         restaurante.direccion = direccion
-        restaurante.telefono = telefono
+        restaurante.codigo_postal = codigo_postal
         database.commit()
         database.refresh(restaurante)
         return { 

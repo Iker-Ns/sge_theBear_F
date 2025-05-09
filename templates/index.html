@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP - Pàgina Principal</title>
+    <link href="{{ url_for('static', path='/css/styles_main_page.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="erp-container">
+        <!-- Capçalera Odoo-style -->
+        <header class="erp-header">
+            <div class="erp-logo">ERP System</div>
+            <nav class="erp-nav">
+                <a href="/" class="active">Inici</a>
+                <a href="/restaurant">Restaurant</a>
+                <a href="/usuaris/index_form.html">Usuaris</a>
+                <a href="#">Inventari</a>
+            </nav>
+            <div class="erp-user">Admin</div>
+        </header>
+
+        <!-- Contingut principal -->
+        <main class="erp-dashboard">
+            <h1>Mòduls Principals</h1>
+
+            <!-- Grid de mòduls -->
+            <div class="module-grid">
+                <!-- Mòdul d'Usuaris -->
+                <div href="/" class="erp-module" id="usersModule">
+                    <div class="module-icon">
+                        <span class="material-icons">group</span>
+                    </div>
+                    <h2>Usuaris</h2>
+                    <p>Gestió d'usuaris i permisos</p>
+                </div>
+
+                <!-- Mòdul de Restaurant -->
+                <div href="/restaurant" class="erp-module" id="restaurantModule">
+                    <div class="module-icon">
+                        <span class="material-icons">restaurant</span>
+                    </div>
+                    <h2>Restaurant</h2>
+                    <p>Gestió dels restaurants</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/script_main_page.js') }}"></script>
+</body>
+</html>
