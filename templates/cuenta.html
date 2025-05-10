@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cuenta</title>
+    <link href="{{ url_for('static', path='/css/styles_main_page.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/restaurant_page.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<!-- Capçalera Odoo-style -->
+
+<header class="erp-header">
+    <div class="erp-logo">ERP System</div>
+    <nav class="erp-nav">
+        <a href="/" class="active">Inici</a>
+        <a href="#">Vendes</a>
+        <a href="/usuaris/index_form.html">Usuaris</a>
+        <a href="#">Inventari</a>
+    </nav>
+    <div class="erp-user">Admin</div>
+</header>
+
+<!-- Contingut principal -->
+<main class="erp-dashboard">
+    <h1>Gestió de compte</h1>
+
+    <div style="display: inline-flex; gap: 20px;">
+        <button id="add-new" class="btn-primary">Afegir compte</button>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Cerca compte per ID...">
+        </div>
+    </div>
+
+    <!-- Modal per afegir compte -->
+    <div id="addCompteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Afegir Compte</h2>
+            <form id="addCompteForm">
+                <input type="hidden" id="addCompteId" name="addCompteId">
+                <div class="form-group">
+                    <label for="addClienteId">ID del Client:</label>
+                    <input type="number" id="addClienteId" name="addClienteId" required>
+                </div>
+                <div class="form-group">
+                    <label for="addPrecioTotal">Preu Total:</label>
+                    <input type="number" id="addPrecioTotal" name="addPrecioTotal" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Canvis</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal per editar el compte -->
+    <div id="editCompteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Compte</h2>
+            <form id="editCompteForm">
+                <input type="hidden" id="editCompteId" name="editCompteId">
+                <div class="form-group">
+                    <label for="editClienteId">ID del Client:</label>
+                    <input type="number" id="editClienteId" name="editClienteId" required>
+                </div>
+                <div class="form-group">
+                    <label for="editPrecioTotal">Preu Total:</label>
+                    <input type="number" id="editPrecioTotal" name="editPrecioTotal" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Canvis</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Taula per mostrar els comptes -->
+    <table id="compteTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID Client</th>
+                <th>Preu Total</th>
+                <th>Data</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Les files es generaran dinàmicament amb JavaScript -->
+        </tbody>
+    </table>
+
+    <script src="{{ url_for('static', path='/js/script_compte_page.js') }}"></script>
+</main>
+</body>
+</html>

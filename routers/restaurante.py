@@ -48,7 +48,7 @@ def crear_restaurante_endpoint(
         database
     )
 
-@router.put("/restaurantes/{id}")
+@router.put("/restaurantes/")
 def actualizar_restaurante_endpoint(
         restaurante: RestauranteEdit,
         database: Session = Depends(Database.get_session)

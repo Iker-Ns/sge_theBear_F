@@ -1,5 +1,11 @@
 from datetime import datetime, timezone
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
+from typing import Optional, TYPE_CHECKING
+from models.Cliente import Cliente
+
+if TYPE_CHECKING:
+    from models.Cliente import Cliente
+
 
 class Cuenta(SQLModel, table=True):
     """
@@ -16,7 +22,9 @@ class Cuenta(SQLModel, table=True):
     fecha : datetime
         Fecha y hora de creación de la cuenta. Se establece por defecto con la fecha y hora actual.
     """
-    id: int = Field(default=None, primary_key=True)
-    cliente_id: int = Field(foreign_key="cliente.id", nullable=False) # Cuenta N .. 1 Cliente
+    id: Optional[int] = Field(default=None, primary_key=True)
+    cliente_id: int = Field(foreign_key="cliente.id", nullable=False)
     precio_total: int = Field(nullable=False)
-    fecha: datetime = Field(default_factory=lambda: datetime.utcnow(timezone.utc))
+    fecha: datetime = Field(default_factory=lambda: datetime.utcnow())
+
+    cliente: "Cliente" = Relationship(back_populates="cuentas")

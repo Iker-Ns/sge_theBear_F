@@ -24,7 +24,7 @@ def listar_restaurantes(database : Session):
         "Result" : schemas(restaurantes)
     }
 
-def leer_restaurante(id, database : Session):
+def leer_restaurante(id : int, database : Session):
     """
     Lee un restaurante por su ID.
     """
@@ -34,10 +34,7 @@ def leer_restaurante(id, database : Session):
         return { 
             "Result" : schema(restaurante)
         }
-    else:
-        return { 
-            "Error" : "Restaurante no encontrado"
-        }
+    return None
 
 def actualizar_restaurante(id, nombre, direccion, codigo_postal, database : Session):
     """

@@ -25,7 +25,13 @@
 <main class="erp-dashboard">
     <h1>Gestió de Restaurants</h1>
 
-    <button id="add-new" class="btn-primary">Afegir Restaurant</button>
+    <div style="display: inline-flex; gap: 20px;">
+        <button id="add-new" class="btn-primary">Afegir Restaurant</button>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Cerca restaurant per ID...">
+        </div>
+    </div>
 
     <!-- Modal per afegir restaurant -->
     <div id="addRestaurantModal" class="modal">
