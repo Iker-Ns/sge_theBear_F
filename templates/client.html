@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+   <link href="{{ url_for('static', path='/css/styles_main_page.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/restaurant_page.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<header class="erp-header">
+    <div class="erp-logo">ERP System</div>
+    <nav class="erp-nav">
+        <a href="/" class="active">Inici</a>
+        <a href="#">Vendes</a>
+        <a href="/usuaris/index_form.html">Usuaris</a>
+        <a href="#">Inventari</a>
+    </nav>
+    <div class="erp-user">Admin</div>
+</header>
+
+<main class="erp-dashboard">
+    <h1>Gestió de Clients</h1>
+
+    <button id="add-new" class="btn-primary">Afegir Client</button>
+
+    <!-- Modal Afegir Client -->
+    <div id="addClientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Afegir Client</h2>
+            <form id="addClientForm">
+                <input type="hidden" id="addClientId" name="addClientId">
+                <div class="form-group">
+                    <label for="addClientName">Nom:</label>
+                    <input type="text" id="addClientName" name="addClientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="addClientSurname">Cognom:</label>
+                    <input type="text" id="addClientSurname" name="addClientSurname" required>
+                </div>
+                <div class="form-group">
+                    <label for="addClientPhone">Telèfon:</label>
+                    <strong id="addErrorLabelPhone" style="display: none; color:red"></strong>
+                    <input type="text" id="addClientPhone" name="addClientPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="addClientRestaurantId">ID del Restaurant:</label>
+                    <input type="number" id="addClientRestaurantId" name="addClientRestaurantId" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Editar Client -->
+    <div id="editClientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Client</h2>
+            <form id="editClientForm">
+                <input type="hidden" id="editClientId" name="editClientId">
+                <div class="form-group">
+                    <label for="editClientName">Nom:</label>
+                    <input type="text" id="editClientName" name="editClientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editClientSurname">Cognom:</label>
+                    <input type="text" id="editClientSurname" name="editClientSurname" required>
+                </div>
+                <div class="form-group">
+                    <label for="editClientPhone">Telèfon:</label>
+                    <strong id="editErrorLabelPhone" style="display: none; color:red"></strong>
+                    <input type="text" id="editClientPhone" name="editClientPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="editClientRestaurantId">ID del Restaurant:</label>
+                    <input type="number" id="editClientRestaurantId" name="editClientRestaurantId" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Canvis</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Taula de Clients -->
+    <table id="clientTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Cognom</th>
+                <th>Telèfon</th>
+                <th>Restaurant ID</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Files generades amb JavaScript -->
+        </tbody>
+    </table>
+
+    <script src="{{ url_for('static', path='/js/script_client_page.js') }}"></script>
+</main>
+</body>
+</html>
