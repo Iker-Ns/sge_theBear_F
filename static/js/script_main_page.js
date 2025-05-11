@@ -1,21 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Seleccionem el mòdul d'usuaris
     const usersModule = document.getElementById('usersModule');
     const restaurantModule = document.getElementById('restaurantModule');
+    const comptesModule = document.getElementById('comptesModule');
 
-    // Afegim event listener per al clic
     usersModule.addEventListener('click', () => {
-        // Redireccionem a la pàgina del formulari
         window.location.href = 'usuaris/index_form.html';
     });
-
-    // Afegim event listener per al clic
+    comptesModule.addEventListener('click', () => {
+        window.location.href = '/cuenta';
+    });
     restaurantModule.addEventListener('click', () => {
-        // Redireccionem a la pàgina del formulari
         window.location.href = '/restaurant';
     });
 
-    // Opcional: Afegir efecte al passar el ratolí
+    comptesModule.addEventListener('mouseenter', () => {
+        comptesModule.style.borderColor = '#714B67';
+    });
+    comptesModule.addEventListener('mouseleave', () => {
+        comptesModule.style.borderColor = '#e0e0e0';
+    })
+
     usersModule.addEventListener('mouseenter', () => {
         usersModule.style.borderColor = '#714B67';
     });

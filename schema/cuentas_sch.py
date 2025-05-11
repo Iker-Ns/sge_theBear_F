@@ -1,11 +1,12 @@
-def schema(cuenta) -> dict:
-    send_cuenta = {
-        "id": cuenta["id"],
-        "cliente_id:": cuenta["cliente_id"],
-        "precio_total": cuenta["precio_total"],
-        "fecha": cuenta["fecha"],
-    }
-    return send_cuenta
+from datetime import datetime
 
-def schemas(cuentas) -> list[dict]:
-    return [schema(cuenta) for k,cuenta in cuentas.items()]
+def schema(cuenta):
+    return {
+        "id": cuenta.id,
+        "cliente_id": cuenta.cliente_id,
+        "precio_total": cuenta.precio_total,
+        "fecha": cuenta.fecha.isoformat() if isinstance(cuenta.fecha, datetime) else cuenta.fecha
+    }
+
+def schemas(cuentas):
+    return [schema(cuenta) for cuenta in cuentas]
