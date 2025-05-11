@@ -25,6 +25,12 @@ async def root(request: Request):
         request=request, name="index.html"
     )
 
+@app.get("/clients", response_class=HTMLResponse)
+async def clients(request: Request):
+    return templates.TemplateResponse(
+        request=request, name="client.html"
+    )
+
 @app.get("/restaurant", response_class=HTMLResponse)
 async def restaurant(request: Request):
     return templates.TemplateResponse(
@@ -35,6 +41,7 @@ async def restaurant(request: Request):
 async def trabajador(request: Request):
     return templates.TemplateResponse(
         request=request, name="trabajador.html"
+    )
       
 @app.get("/cuenta", response_class=HTMLResponse)
 async def cuenta(request: Request):

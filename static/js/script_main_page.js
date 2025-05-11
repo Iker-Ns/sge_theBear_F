@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const comptesModule = document.getElementById('comptesModule');
 
     usersModule.addEventListener('click', () => {
-        window.location.href = 'usuaris/index_form.html';
+        window.location.href = '/clients';
     });
 
     trabajadorsModule.addEventListener('click', () => {
         // Redireccionem a la pàgina del formulari
-        window.location.href = 'trabajadores/';
+        window.location.href = '/trabajadores';
     });
 
     // Afegim event listener per al clic
