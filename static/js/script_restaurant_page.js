@@ -36,9 +36,28 @@ async function fetchRestaurants() {
     }
 }
 
+async function fetchRestaurant(id) {
+    try {
+        const response = await fetch(`${API_URL}${id}/`);
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+        const restaurant = await response.json();
+        return restaurant;
+    } catch (error) {
+        console.error("Error al obtener el restaurante:", error);
+        return null;
+    }
+}
+
+function clearTable() {
+    const tableBody = document.querySelector("#restaurantTable tbody");
+    tableBody.innerHTML = "";
+}
+
 function displayRestaurants(restaurants) {
     const tableBody = document.querySelector("#restaurantTable tbody");
-
+    console.log(restaurants)
     tableBody.innerHTML = "";
 
     restaurants.Result.forEach((restaurant) => {
@@ -199,5 +218,44 @@ addForm.onsubmit = async function(e) {
         console.error("Error al guardar:", error);
     }
 };
+
+const searchByIdInput = document.getElementById("searchInput");
+searchByIdInput.addEventListener("keyup", async function(e) {
+    const searchValue = e.target.value.trim();
+    
+    if (searchValue === "") {
+        await fetchRestaurants();
+        return;
+    }
+
+    if (/^\d+$/.test(searchValue)) {
+        try {
+            const restaurant = await fetchRestaurant(searchValue);
+            if (restaurant.Error != null) {
+                console.error("Error al buscar restaurante por ID:", restaurant);
+                clearTable();
+                return;
+            }
+
+            if (restaurant) {
+                displayRestaurants({
+                    Result: [{
+                        id: restaurant.Result.id,
+                        nombre: restaurant.Result.nombre,
+                        direccion: restaurant.Result.direccion,
+                        codigo_postal: restaurant.Result.codigo_postal
+                    }]
+                });
+            } else {
+                clearTable();
+            }
+        } catch (error) {
+            console.error("Error al buscar restaurante por ID:", error);
+            clearTable();
+        }
+    } else {
+        await fetchRestaurants();
+    }
+});
 
 document.addEventListener("DOMContentLoaded", fetchRestaurants);

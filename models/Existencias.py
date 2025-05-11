@@ -1,9 +1,9 @@
 from sqlmodel import SQLModel, Field
 
-class Existencias(SQLModel, table=True):
+class Existencias(SQLModel, table=True, table_name="existencias"):
     """
     Representa un artículo en el inventario de existencias.
-    
+
     Atributos
     ---------
     id : int
