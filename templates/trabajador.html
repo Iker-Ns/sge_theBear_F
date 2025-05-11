@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gestió de Treballadors</title>
+    <link href="{{ url_for('static', path='/css/styles_main_page.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/restaurant_page.css') }}" rel="stylesheet">
 </head>
 <body>
-    
+    <header class="erp-header">
+        <div class="erp-logo">ERP System</div>
+        <nav class="erp-nav">
+            <a href="/">Inici</a>
+            <a href="/restaurant">Restaurant</a>
+            <a href="/usuaris/index_form.html">Usuaris</a>
+            <a href="/trabajadores" class="active">Treballadors</a>
+        </nav>
+        <div class="erp-user">Admin</div>
+    </header>
+
+    <main class="erp-dashboard">
+        <h1>Gestió de Treballadors</h1>
+
+        <button id="addTrabajadorBtn" class="btn-primary">Afegir Treballador</button>
+
+        <div id="addTrabajadorModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Afegir Treballador</h2>
+                <form id="addTrabajadorForm">
+                    <div class="form-group">
+                        <label>Seguretat Social:</label>
+                        <input type="text" name="seguridad_social" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nom:</label>
+                        <input type="text" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Cognom:</label>
+                        <input type="text" name="apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Càrrec:</label>
+                        <input type="text" name="cargo" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ID Restaurant:</label>
+                        <input type="number" name="id_restaurante" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+
+        <table id="trabajadoresTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Seguretat Social</th>
+                    <th>Nom</th>
+                    <th>Cognom</th>
+                    <th>Càrrec</th>
+                    <th>ID Restaurant</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+
+    <script src="{{ url_for('static', path='/js/script_trabajadores.js') }}"></script>
 </body>
 </html>
