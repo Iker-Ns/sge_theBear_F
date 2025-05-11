@@ -4,22 +4,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cuenta</title>
     <link href="{{ url_for('static', path='/css/styles_main_page.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', path='/css/restaurant_page.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="{{ url_for('static', path='/css/cuenta_page.css') }}" rel="stylesheet">
 </head>
 <body>
-<!-- Capçalera Odoo-style -->
-
-<header class="erp-header">
-    <div class="erp-logo">ERP System</div>
-    <nav class="erp-nav">
-        <a href="/" class="active">Inici</a>
-        <a href="#">Vendes</a>
-        <a href="/usuaris/index_form.html">Usuaris</a>
-        <a href="#">Inventari</a>
-    </nav>
-    <div class="erp-user">Admin</div>
-</header>
+        <!-- Capçalera Odoo-style -->
+        <header class="erp-header">
+            <div class="erp-logo">ERP System</div>
+            <nav class="erp-nav">
+                <a href="/" class="active">Inici</a>
+                <a href="/restaurant">Restaurant</a>
+                <a href="/cuenta">Comptes</a>
+                <a href="/usuaris/index_form.html">Usuaris</a>
+                <a href="#">Inventari</a>
+            </nav>
+            <div class="erp-user">Admin</div>
+        </header>
 
 <!-- Contingut principal -->
 <main class="erp-dashboard">
@@ -73,10 +73,52 @@
         </div>
     </div>
 
+    <!-- Modal per afegir producte a compte -->
+    <div id="addProductoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Afegir Producte a Compte</h2>
+            <form id="addProductoForm">
+                <input type="hidden" id="addProductoCuentaId" name="addProductoCuentaId">
+                <div class="form-group">
+                    <label for="addProductoId">ID del Producte:</label>
+                    <input type="number" id="addProductoId" name="addProductoId" required>
+                </div>
+                <div class="form-group">
+                    <label for="addCantidad">Quantitat:</label>
+                    <input type="number" id="addCantidad" name="addCantidad" value="1" min="1" required>
+                </div>
+                <button type="submit" class="btn-primary">Afegir Producte</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal per editar producte de compte -->
+    <div id="editProductoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Producte de Compte</h2>
+            <form id="editProductoForm">
+                <input type="hidden" id="editProductoId" name="editProductoId">
+                <input type="hidden" id="editProductoCuentaId" name="editProductoCuentaId">
+                <div class="form-group">
+                    <label for="editProductoProductoId">ID del Producte:</label>
+                    <input type="number" id="editProductoProductoId" name="editProductoProductoId" required>
+                </div>
+                <div class="form-group">
+                    <label for="editCantidad">Quantitat:</label>
+                    <input type="number" id="editCantidad" name="editCantidad" min="1" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Canvis</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Taula per mostrar els comptes -->
     <table id="compteTable">
         <thead>
             <tr>
+                <th></th>
                 <th>ID</th>
                 <th>ID Client</th>
                 <th>Preu Total</th>

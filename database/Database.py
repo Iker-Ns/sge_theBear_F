@@ -6,9 +6,8 @@ import logging
 
 class Database:
     """
-    Permite conectar a la base de datos.
+    Permite conectarse a la base de datos.
     """
-    # Inicialización de variables de clase
     __engine = None
     __uri = None
 
@@ -22,9 +21,15 @@ class Database:
                 raise ValueError("DATABASE_URI no está configurada en .env")
 
             try:
+                from models.Existencias import Existencias
+                from models.ProductosToCuenta import Productos_To_Cuenta
+                from models.Cuenta import Cuenta
+                from models.Restaurante import Restaurante
+                from models.Cliente import Cliente
+                from models.Trabajador import Trabajador
+
                 cls.__engine = create_engine(cls.__uri)
                 SQLModel.metadata.create_all(cls.__engine)
-                logging.info("Base de datos inicializada correctamente")
             except Exception as e:
                 logging.error(f"Error al inicializar la base de datos: {e}")
                 raise

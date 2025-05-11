@@ -3,9 +3,6 @@ from schema.restaurantes_sch import schema, schemas
 from models.Restaurante import Restaurante
 
 def crear_restaurante(nombre, direccion, codigo_postal, database : Session):
-    """
-    Crea un nuevo restaurante con los datos proporcionados.
-    """
     restaurante_nuevo = Restaurante(nombre=nombre, direccion=direccion, codigo_postal=codigo_postal)
     database.add(restaurante_nuevo)
     database.commit()
@@ -15,9 +12,6 @@ def crear_restaurante(nombre, direccion, codigo_postal, database : Session):
     }
 
 def listar_restaurantes(database : Session):
-    """
-    Lista todos los restaurantes en la base de datos.
-    """
     statement = select(Restaurante)
     restaurantes = database.exec(statement).all()
     return {
@@ -25,9 +19,6 @@ def listar_restaurantes(database : Session):
     }
 
 def leer_restaurante(id : int, database : Session):
-    """
-    Lee un restaurante por su ID.
-    """
     statement = select(Restaurante).where(Restaurante.id == id)
     restaurante = database.exec(statement).first()
     if restaurante:
@@ -37,9 +28,6 @@ def leer_restaurante(id : int, database : Session):
     return None
 
 def actualizar_restaurante(id, nombre, direccion, codigo_postal, database : Session):
-    """
-    Actualiza un restaurante existente con los nuevos datos proporcionados.
-    """
     statement = select(Restaurante).where(Restaurante.id == id)
     restaurante = database.exec(statement).first()
     if restaurante:
@@ -57,9 +45,6 @@ def actualizar_restaurante(id, nombre, direccion, codigo_postal, database : Sess
         }
     
 def borrar_restaurante(id, database : Session):
-    """
-    Elimina un restaurante por su ID.
-    """
     statement = select(Restaurante).where(Restaurante.id == id)
     restaurante = database.exec(statement).first()
     if restaurante:

@@ -15,11 +15,10 @@ class Cuenta(BaseModel):
     precio_total: int
 
 class CuentaEdit(BaseModel):
-    id: int
     id_cliente : int
     precio_total: int
 
-@router.get("/cuenta")
+@router.get("/cuenta/")
 def obtener_cuentas(database: Session = Depends(Database.get_session)):
     """
     Obtiene una lista de cuentas.
@@ -33,7 +32,7 @@ def obtener_cuenta(id: int, database: Session = Depends(Database.get_session)):
     """
     return leer_cuenta(id, database)
 
-@router.post("/cuenta")
+@router.post("/cuenta/")
 def crear_cuenta_endpoint(
     cuenta: Cuenta,
     database: Session = Depends(Database.get_session)
@@ -47,8 +46,9 @@ def crear_cuenta_endpoint(
         database
     )
 
-@router.put("/cuenta/")
+@router.put("/cuenta/{id}")
 def actualizar_cuenta_endpoint(
+        id: int,
         cuenta: CuentaEdit,
         database: Session = Depends(Database.get_session)
     ):
@@ -56,7 +56,7 @@ def actualizar_cuenta_endpoint(
     Actualiza una cuenta existente.
     """
     return actualizar_cuenta(
-        cuenta.id,
+        id,
         cuenta.id_cliente,
         cuenta.precio_total,
         database
