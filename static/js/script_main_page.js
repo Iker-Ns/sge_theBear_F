@@ -1,11 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
     const usersModule = document.getElementById('usersModule');
     const restaurantModule = document.getElementById('restaurantModule');
+    const trabajadorsModule = document.getElementById('trabajadoresModule');
     const comptesModule = document.getElementById('comptesModule');
 
     usersModule.addEventListener('click', () => {
         window.location.href = 'usuaris/index_form.html';
     });
+
+    trabajadorsModule.addEventListener('click', () => {
+        // Redireccionem a la pàgina del formulari
+        window.location.href = 'trabajadores/';
+    });
+
+    // Afegim event listener per al clic
     comptesModule.addEventListener('click', () => {
         window.location.href = '/cuenta';
     });
@@ -26,6 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
     restaurantModule.addEventListener('mouseleave', () => {
         restaurantModule.style.borderColor = '#e0e0e0';
     })
+
+    trabajadorsModule.addEventListener('mouseenter', () => {
+        trabajadorsModule.style.borderColor = '#714B67';
+    });
+    trabajadorsModule.addEventListener('mouseleave', () => {
+        trabajadorsModule.style.borderColor = '#e0e0e0';
+    });
 
     usersModule.addEventListener('mouseleave', () => {
         usersModule.style.borderColor = '#e0e0e0';
