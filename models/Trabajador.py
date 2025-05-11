@@ -1,5 +1,5 @@
 from sqlmodel import SQLModel, Field, Relationship
-from Restaurante import Restaurante
+from models.Restaurante import Restaurante
 
 class Trabajador(SQLModel, table=True):
     """

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="{{ url_for('static', path='/css/styles_main_page.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+
 <body>
     <div class="erp-container">
         <!-- Capçalera Odoo-style -->
@@ -16,7 +18,7 @@
                 <a href="/" class="active">Inici</a>
                 <a href="/restaurant">Restaurant</a>
                 <a href="/usuaris/index_form.html">Usuaris</a>
-                <a href="#">Inventari</a>
+                <a href="/trabajadores">Trabajadors</a>
             </nav>
             <div class="erp-user">Admin</div>
         </header>
@@ -44,10 +46,20 @@
                     <h2>Restaurant</h2>
                     <p>Gestió dels restaurants</p>
                 </div>
+
+                <!-- Mòdul de Trabajadores -->
+                <div href="/trabajadores" class="erp-module" id="trabajadoresModule">
+                    <div class="module-icon">
+                        <span class="material-icons">group</span>
+                    </div>
+                    <h2>Trabajadors</h2>
+                    <p>Gestió dels trabajadors</p>
+                </div>
             </div>
         </main>
     </div>
 
     <script src="{{ url_for('static', path='/js/script_main_page.js') }}"></script>
 </body>
+
 </html>
