@@ -2,11 +2,11 @@ from sqlmodel import Session, select
 from schema.clientes_sch import schema
 from models.Cliente import Cliente
 
-def crear_cliente(id, nombre, apellido, telefono, restaurante_id, database : Session):
+def crear_cliente(nombre, apellido, telefono, restaurante_id, database : Session):
     """
     Crea un nuevo cliente con los datos proporcionados.
     """
-    cliente_nuevo = Cliente(id=id, nombre=nombre, apellido=apellido, telefono=telefono, restaurante_id=restaurante_id)
+    cliente_nuevo = Cliente(nombre=nombre, apellido=apellido, telefono=telefono, restaurante_id=restaurante_id)
     database.add(cliente_nuevo)
     database.commit()
     database.refresh(cliente_nuevo)

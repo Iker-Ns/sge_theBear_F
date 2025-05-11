@@ -1,10 +1,10 @@
 def schema(cliente) -> dict:
     send_cliente = {
-        "id": cliente["id"],
-        "nombre": cliente["nombre"],
-        "apellido": cliente["apellido"],
-        "telefono": cliente["telefono"],
-        "restaurante": cliente["restaurante"]
+        "id": cliente.id,
+        "nombre": cliente.nombre,
+        "apellido": cliente.apellido,
+        "telefono": cliente.telefono,
+        "restaurante": cliente.restaurante
     }
     return send_cliente
 

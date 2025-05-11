@@ -58,7 +58,7 @@ function displayClients(clients) {
         row.appendChild(telefonoCell);
 
         const restauranteCell = document.createElement("td");
-        restauranteCell.textContent = client.restaurante_id;
+        restauranteCell.textContent = `${client.restaurante.nombre} (${client.restaurante.id})`;
         row.appendChild(restauranteCell);
 
         const actionsCell = document.createElement("td");
@@ -155,7 +155,7 @@ addForm.onsubmit = async function (e) {
         nombre: document.getElementById("addClientName").value,
         apellido: document.getElementById("addClientSurname").value,
         telefono: document.getElementById("addClientPhone").value,
-        restaurante_id: parseInt(document.getElementById("addClientRestaurant").value),
+        restaurante_id: parseInt(document.getElementById("addClientRestaurantId").value),
     };
 
     try {

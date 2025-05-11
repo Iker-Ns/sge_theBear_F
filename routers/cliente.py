@@ -23,7 +23,7 @@ class ClienteEdit(BaseModel):
     restaurante_id: int
 
 
-@router.get("/clientes")
+@router.get("/clientes/")
 def obtener_clientes(database: Session = Depends(Database.get_session)):
     """
     Obtiene una lista de clientes.
@@ -37,7 +37,7 @@ def obtener_cliente(id: int, database: Session = Depends(Database.get_session)):
     """
     return leer_cliente(id, database)
 
-@router.post("/clientes")
+@router.post("/clientes/")
 def crear_cliente_endpoint(
     cliente: Cliente,
     database: Session = Depends(Database.get_session)
