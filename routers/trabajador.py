@@ -11,7 +11,6 @@ class Trabajador(BaseModel):
     """
     Modelo de datos para un trabajador.
     """
-    id: int
     seguridad_social: str
     nombre: str
     apellido: str
@@ -28,19 +27,19 @@ class AddTrabajador(BaseModel):
     cargo: str
     id_restaurante: int
 
-@router.get("/trabajadores")
+@router.get("/trabajadores/")
 async def get_trabajadores(database: Session = Depends(Database.get_session)):
     """
     Endpoint para listar todos los trabajadores.
     """
     return listar_trabajadores(database)
 
-router.post("/trabajadores")
+@router.post("/trabajadores/")
 async def post_trabajador(trabajador: Trabajador, database: Session = Depends(Database.get_session)):
     """
     Endpoint para crear un nuevo trabajador.
     """
-    return crear_trabajador(trabajador.id, trabajador.seguridad_social, trabajador.nombre, trabajador.apellido, trabajador.cargo, trabajador.id_restaurante, database)
+    return crear_trabajador(trabajador.seguridad_social, trabajador.nombre, trabajador.apellido, trabajador.cargo, trabajador.id_restaurante, database)
 
 @router.get("/trabajadores/{id}")
 async def get_trabajador(id: int, database: Session = Depends(Database.get_session)):

@@ -2,11 +2,11 @@ from sqlmodel import Session, select
 from schema.trabajadores_sch import schema
 from models.Trabajador import Trabajador
 
-def crear_trabajador(id, seguridad_social, nombre, apellido, cargo, id_restaurante, database : Session):
+def crear_trabajador(seguridad_social, nombre, apellido, cargo, id_restaurante, database : Session):
     """
     Crea un nuevo trabajador con los datos proporcionados.
     """
-    trabajador_nuevo = Trabajador(id=id, seguridad_social=seguridad_social, nombre=nombre, apellido=apellido, cargo=cargo, id_restaurante=id_restaurante)
+    trabajador_nuevo = Trabajador(seguridad_social=seguridad_social, nombre=nombre, apellido=apellido, cargo=cargo, id_restaurante=id_restaurante)
     database.add(trabajador_nuevo)
     database.commit()
     database.refresh(trabajador_nuevo)
