@@ -41,8 +41,10 @@
             <form id="addCompteForm">
                 <input type="hidden" id="addCompteId" name="addCompteId">
                 <div class="form-group">
-                    <label for="addClienteId">ID del Client:</label>
-                    <input type="number" id="addClienteId" name="addClienteId" required>
+                    <label for="addClienteId">Selecciona Client:</label>
+                    <select id="addClienteId" name="addClienteId" required>
+                        <option value="">Carregant clients...</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="addPrecioTotal">Preu Total:</label>

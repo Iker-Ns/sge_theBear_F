@@ -32,10 +32,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    addBtn.addEventListener('click', function() {
-        addForm.reset();
-        addModal.style.display = 'block';
-    });
+addBtn.addEventListener('click', function() {
+    addForm.reset();
+    loadClientsDropdown();
+    addModal.style.display = 'block';
+});
+
 
     loadComptes();
 
@@ -330,6 +332,26 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error updating producto in compte:', error));
     });
+
+    function loadClientsDropdown() {
+    fetch('api/clientes')
+        .then(response => response.json())
+        .then(data => {
+            const clientSelect = document.getElementById('addClienteId');
+            clientSelect.innerHTML = '<option value="">-- Selecciona un client --</option>';
+            data.Result.forEach(client => {
+                const option = document.createElement('option');
+                option.value = client.id;
+                option.textContent = `${client.id} - ${client.nombre} ${client.apellido} (${client.restaurante.nombre})`;
+                clientSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading clients:', error);
+            document.getElementById('addClienteId').innerHTML = '<option>Error carregant clients</option>';
+        });
+}
+
 
     searchInput.addEventListener('input', function() {
         const searchValue = this.value.toLowerCase();
