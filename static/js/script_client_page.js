@@ -37,7 +37,6 @@ async function fetchClients() {
 function displayClients(clients) {
     const tableBody = document.querySelector("#clientTable tbody");
     tableBody.innerHTML = "";
-
     clients.Result.forEach((client) => {
         const row = document.createElement("tr");
 
@@ -83,7 +82,7 @@ function displayClients(clients) {
             document.getElementById("editClientName").value = client.nombre;
             document.getElementById("editClientSurname").value = client.apellido;
             document.getElementById("editClientPhone").value = client.telefono;
-            document.getElementById("editClientRestaurant").value = client.restaurante_id;
+            document.getElementById("editClientRestaurantId").value = client.restaurante.id;
             document.getElementById("editClientId").value = client.id;
             editModal.style.display = "block";
         };
@@ -110,7 +109,7 @@ editForm.onsubmit = async function (e) {
         nombre: document.getElementById("editClientName").value,
         apellido: document.getElementById("editClientSurname").value,
         telefono: document.getElementById("editClientPhone").value,
-        restaurante_id: parseInt(document.getElementById("editClientRestaurant").value),
+        restaurante_id: parseInt(document.getElementById("editClientRestaurantId").value),
     };
 
     try {
