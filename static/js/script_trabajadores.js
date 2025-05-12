@@ -49,15 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    const deleteButtons = document.querySelectorAll(".btn-danger");
-    deleteButtons.forEach(button => {
-        button.addEventListener("click", (e) => {
-            const row = e.target.closest("tr");
-            const id = row.querySelector("td").innerText;
-            deleteTrabajador(id);
-        });
-    });
-
     function deleteTrabajador(id) {
         if (confirm("¿Estás seguro de que deseas eliminar este trabajador?")) {
             fetch(`${API_URL}${id}`, { method: "DELETE" })
