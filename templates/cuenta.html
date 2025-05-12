@@ -84,8 +84,10 @@
             <form id="addProductoForm">
                 <input type="hidden" id="addProductoCuentaId" name="addProductoCuentaId">
                 <div class="form-group">
-                    <label for="addProductoId">ID del Producte:</label>
-                    <input type="number" id="addProductoId" name="addProductoId" required>
+                    <label for="addProductoId">Selecciona Producte:</label>
+                    <select id="addProductoId" name="addProductoId" required>
+                        <option value="">Carregant productes...</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="addCantidad">Quantitat:</label>

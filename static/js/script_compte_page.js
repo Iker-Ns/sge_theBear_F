@@ -110,7 +110,6 @@ addBtn.addEventListener('click', function() {
                                 const productosLista = document.getElementById(`productos-lista-${compteId}`);
                                 if (productos.length > 0) {
                                     productos.forEach(producto => { 
-                                        console.log(producto)
                                         const productoItem = document.createElement('div');
                                         productoItem.className = 'producto-item';
                                         productoItem.innerHTML = `
@@ -144,6 +143,7 @@ addBtn.addEventListener('click', function() {
                 document.getElementById('addProductoCuentaId').value = cuentaId;
                 addProductoForm.reset();
                 addProductoModal.style.display = 'block';
+                loadProductosDropdown();
             });
         });
     }
@@ -178,11 +178,10 @@ addBtn.addEventListener('click', function() {
                     })
                     .then(response => response.json())
                     .then(data => {
-                        // Actualizar la vista expandida
                         const expandBtn = document.querySelector(`.btn-expand[data-id="${cuentaId}"]`);
                         if (expandBtn) {
-                            expandBtn.click(); // Cierra
-                            expandBtn.click(); // Abre nuevamente para actualizar
+                            expandBtn.click();
+                            expandBtn.click();
                         }
                     })
                     .catch(error => console.error('Error deleting producto:', error));
@@ -283,6 +282,7 @@ addBtn.addEventListener('click', function() {
             producto_id: parseInt(document.getElementById('addProductoId').value),
             cantidad: parseInt(document.getElementById('addCantidad').value)
         };
+        console.log(productoData);
 
         fetch('api/producto_cuenta', {
             method: 'POST',
@@ -297,8 +297,8 @@ addBtn.addEventListener('click', function() {
 
             const expandBtn = document.querySelector(`.btn-expand[data-id="${productoData.cuenta_id}"]`);
             if (expandBtn) {
-                expandBtn.click(); // Cierra
-                expandBtn.click(); // Abre nuevamente para actualizar
+                expandBtn.click();
+                expandBtn.click();
             }
         })
         .catch(error => console.error('Error adding producto to compte:', error));
@@ -351,8 +351,30 @@ addBtn.addEventListener('click', function() {
             console.error('Error loading clients:', error);
             document.getElementById('addClienteId').innerHTML = '<option>Error carregant clients</option>';
         });
-}
+    }
 
+    function loadProductosDropdown() {
+        fetch('api/existencias')
+            .then(response => response.json())
+            .then(data => {
+                const productoSelect = document.getElementById('addProductoId');
+                productoSelect.innerHTML = '<option value="">-- Selecciona un producto --</option>';
+                data.Result.forEach(producto => {
+                    if (producto.cantidad <= 0) {
+                        return;
+                    }
+
+                    const option = document.createElement('option');
+                    option.value = producto.id;
+                    option.textContent = `${producto.id} - ${producto.nombre} (${producto.precio_unidad})`;
+                    productoSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading productos:', error);
+                document.getElementById('addProductoId').innerHTML = '<option>Error carregant productes</option>';
+            });
+    }
 
     searchInput.addEventListener('input', function() {
         const searchValue = this.value.toLowerCase();
