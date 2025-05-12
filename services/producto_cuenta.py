@@ -7,16 +7,24 @@ from fastapi import HTTPException
 def borrar_producto_cuenta(id, database: Session):
     statement = select(Productos_To_Cuenta).where(Productos_To_Cuenta.id == id)
     producto_cuenta = database.exec(statement).first()
-    if producto_cuenta:
-        database.delete(producto_cuenta)
-        database.commit()
-        return {
-            "Result": "Producto borrado"
-        }
-    else:
+
+    if not producto_cuenta:
         return {
             "Error": "Producto no encontrado"
         }
+
+    existencias = database.get(Existencias, producto_cuenta.producto_id)
+    if not existencias:
+        raise HTTPException(status_code=404, detail="Existencias no encontradas")
+
+    existencias.cantidad += producto_cuenta.cantidad
+    database.delete(producto_cuenta)
+    database.commit()
+    
+    return {
+        "Result": "Producto borrado"
+    }
+
 
 def añadir_producto_cuenta(cuenta_id, producto_id, cantidad, database: Session):
     producto = database.get(Existencias, producto_id)

@@ -56,11 +56,22 @@ addBtn.addEventListener('click', function() {
         compteTable.innerHTML = '';
         comptes.forEach(compte => {
             const row = compteTable.insertRow();
+            row.setAttribute('data-id', compte.id);
+            let preuTotal = 0
+            console.log(compte);
+            if (compte.productos) {
+                console.log(compte.productos);
+                compte.productos.forEach(producto => {
+                    const cantidad = parseInt(producto.cantidad);
+                    const preuUnitat = parseInt(producto.existencias.precio_unidad);
+                    preuTotal += cantidad * preuUnitat;
+                });
+            }
             row.innerHTML = `
                 <td><button class="btn-expand" data-id="${compte.id}">+</button></td>
                 <td>${compte.id}</td>
-                <td>${compte.cliente_id}</td>
-                <td>${compte.precio_total}</td>
+                <td>${compte.cliente.nombre} (${compte.cliente_id})</td>
+                <td>${preuTotal}</td>
                 <td>${new Date(compte.fecha).toLocaleString()}</td>
                 <td>
                     <button class="btn-edit" data-id="${compte.id}">Editar</button>
@@ -201,7 +212,6 @@ addBtn.addEventListener('click', function() {
                             const compte = data.Result;
                             document.getElementById('editCompteId').value = compte.id;
                             document.getElementById('editClienteId').value = compte.cliente_id;
-                            document.getElementById('editPrecioTotal').value = compte.precio_total;
                             editModal.style.display = 'block';
                         }
                     })
@@ -228,12 +238,43 @@ addBtn.addEventListener('click', function() {
         });
     }
 
+    function recalculatePreuTotal(compteId) {
+    fetch(`api/cuenta/${compteId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.Result) {
+                const compte = data.Result;
+                let preuTotal = 0;
+                if (compte.productos) {
+                    compte.productos.forEach(producto => {
+                        console.log(producto);
+                        const cantidad = parseInt(producto.cantidad);
+                        const preuUnitat = parseInt(producto.existencia.precio_unidad);
+                        preuTotal += cantidad * preuUnitat;
+                    });
+                }
+
+                const row = document.querySelector(`tr[data-id="${compteId}"]`);
+                if (row) {
+                    console.log("encontrado");
+                    row.cells[3].textContent = preuTotal;
+                }
+                else 
+                {
+                    console.log("no encontrado");
+                }
+            }
+        })
+        .catch(error => console.error('Error recalculating price total:', error));
+}
+
+
     addForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
         const compteData = {
             id_cliente: parseInt(document.getElementById('addClienteId').value),
-            precio_total: parseInt(document.getElementById('addPrecioTotal').value)
+            precio_total: 0
         };
 
         fetch('api/cuenta', {
@@ -256,7 +297,7 @@ addBtn.addEventListener('click', function() {
         const compteId = parseInt(document.getElementById('editCompteId').value);
         const compteData = {
             cliente_id: parseInt(document.getElementById('editClienteId').value),
-            precio_total: parseInt(document.getElementById('editPrecioTotal').value)
+            precio_total: 0
         };
 
         fetch(`api/cuenta/${compteId}`, {
@@ -270,6 +311,7 @@ addBtn.addEventListener('click', function() {
         .then(data => {
             editModal.style.display = 'none';
             loadComptes();
+            console.log('Compte updated:', data);
         })
         .catch(error => console.error('Error updating compte:', error));
     });
@@ -300,6 +342,7 @@ addBtn.addEventListener('click', function() {
                 expandBtn.click();
                 expandBtn.click();
             }
+            recalculatePreuTotal(productoData.cuenta_id);
         })
         .catch(error => console.error('Error adding producto to compte:', error));
     });
@@ -330,6 +373,7 @@ addBtn.addEventListener('click', function() {
                 expandBtn.click();
                 expandBtn.click();
             }
+            recalculatePreuTotal(productoData.cuenta_id);
         })
         .catch(error => console.error('Error updating producto in compte:', error));
     });

@@ -9,5 +9,20 @@ def schema(producto_cuenta) -> dict:
     }
     return send_producto_cuenta
 
+def producto_to_cuenta_schema(producto):
+    return {
+        "id": producto.id,
+        "cuenta_id": producto.cuenta_id,
+        "producto_id": producto.producto_id,
+        "cantidad": producto.cantidad,
+        "existencias": {
+            "id": producto.existencias.id,
+            "nombre": producto.existencias.nombre,
+            "precio_unidad": producto.existencias.precio_unidad,
+            "cantidad": producto.existencias.cantidad
+        } if producto.existencias else None
+    }
+
+
 def schemas(productos_cuenta) -> list[dict]:
     return [schema(producto_cuenta) for producto_cuenta in productos_cuenta]

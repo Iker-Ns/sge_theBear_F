@@ -52,7 +52,6 @@ def leer_cuenta(id: int, database: Session):
     cuenta = database.exec(statement).first()
     if cuenta:
         cuenta_data = cuenta_schema(cuenta)
-        # Obtener los productos asociados a la cuenta
         productos = listar_productos_cuenta_por_cuenta(id, database)
         cuenta_data["productos"] = productos.get("Result", [])
         return {
