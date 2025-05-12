@@ -8,9 +8,8 @@
 
 # Tablas de cada uno
 
-- Iker: restaurante
+- Iker: restaurante, cuenta y productos_cuenta 
 - Ernesto: cliente
 - Mark: existencias
 - Kim: trabajadores
-I FALTAN ESTAS DOS: cuenta, productos cuenta 
 
