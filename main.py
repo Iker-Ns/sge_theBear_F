@@ -7,6 +7,7 @@ from routers.restaurante import router as restaurante_router
 from routers.trabajador import router as trabajador_router
 from routers.producto_cuenta import router as producto_cuenta_router
 from routers.cliente import router as cliente_router
+from routers.existencias import router as existencias_router
 from database.Database import Database
 
 app = FastAPI()
@@ -20,6 +21,7 @@ app.include_router(trabajador_router, prefix="/api", tags=["trabajadores"])
 app.include_router(cliente_router, prefix="/api", tags=["clientes"])
 app.include_router(cuenta_router, prefix="/api", tags=["cuentas"])
 app.include_router(producto_cuenta_router, prefix="/api", tags=["productos_cuenta"])
+app.include_router(existencias_router, prefix="/api", tags=["existencias"])
 
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
@@ -49,4 +51,10 @@ async def trabajador(request: Request):
 async def cuenta(request: Request):
     return templates.TemplateResponse(
         request=request, name="cuenta.html"
+    )
+
+@app.get("/existencias", response_class=HTMLResponse)
+async def existencias(request: Request):
+    return templates.TemplateResponse(
+        request=request, name="existencias.html"
     )

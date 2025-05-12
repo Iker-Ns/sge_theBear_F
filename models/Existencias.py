@@ -1,4 +1,6 @@
-from sqlmodel import SQLModel, Field
+from sqlmodel import SQLModel, Field, Relationship
+from models.ProductosToCuenta import Productos_To_Cuenta
+from typing import List
 
 class Existencias(SQLModel, table=True, table_name="existencias"):
     """
@@ -19,3 +21,5 @@ class Existencias(SQLModel, table=True, table_name="existencias"):
     precio_unidad: int = Field(nullable=False)
     nombre: str = Field(max_length=50, nullable=False)
     cantidad: int = Field(nullable=False)
+
+    productos_to_cuenta: List["Productos_To_Cuenta"] = Relationship(back_populates="existencias")

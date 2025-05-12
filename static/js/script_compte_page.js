@@ -109,11 +109,12 @@ addBtn.addEventListener('click', function() {
 
                                 const productosLista = document.getElementById(`productos-lista-${compteId}`);
                                 if (productos.length > 0) {
-                                    productos.forEach(producto => {
+                                    productos.forEach(producto => { 
+                                        console.log(producto)
                                         const productoItem = document.createElement('div');
                                         productoItem.className = 'producto-item';
                                         productoItem.innerHTML = `
-                                            <span>Producto ID: ${producto.producto_id} - Cantidad: ${producto.cantidad}</span>
+                                            <span>${producto.existencia.nombre} (${producto.producto_id}) - Cantidad: ${producto.cantidad}</span>
                                             <div class="producto-actions">
                                                 <button class="btn-edit-producto" data-id="${producto.id}" data-cuenta-id="${compteId}" data-producto-id="${producto.producto_id}" data-cantidad="${producto.cantidad}">Editar</button>
                                                 <button class="btn-delete-producto" data-id="${producto.id}" data-cuenta-id="${compteId}">Borrar</button>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventari</title>
+    <link href="{{ url_for('static', path='/css/styles_main_page.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/existencias_page.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+        <header class="erp-header">
+            <div class="erp-logo">ERP System</div>
+            <nav class="erp-nav">
+                <a href="/" class="active">Inici</a>
+                <a href="/restaurant">Restaurant</a>
+                <a href="/cuenta">Comptes</a>
+                <a href="/clients">Clients</a>
+                <a href="/trabajadores">Trabajadors</a>
+                <a href="/existencias">Existències</a>
+            </nav>
+            <div class="erp-user">Admin</div>
+        </header>
+
+<main class="erp-dashboard">
+    <h1>Gestió d'Existències</h1>
+
+    <button id="add-new" class="btn-primary">Afegir Existència</button>
+
+    <!-- Modal per afegir existència -->
+    <div id="addExistenciaModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Afegir Existència</h2>
+            <form id="addExistenciaForm">
+                <input type="hidden" id="addExistenciaId" name="addExistenciaId">
+                <div class="form-group">
+                    <label for="addExistenciaName">Nom de l'article:</label>
+                    <input type="text" id="addExistenciaName" name="addExistenciaName" required>
+                </div>
+                <div class="form-group">
+                    <label for="addExistenciaPrice">Preu per unitat:</label>
+                    <input type="number" id="addExistenciaPrice" name="addExistenciaPrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="addExistenciaQuantity">Quantitat:</label>
+                    <input type="number" id="addExistenciaQuantity" name="addExistenciaQuantity" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Canvis</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal per editar existència -->
+    <div id="editExistenciaModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Existència</h2>
+            <form id="editExistenciaForm">
+                <input type="hidden" id="editExistenciaId" name="editExistenciaId">
+                <div class="form-group">
+                    <label for="editExistenciaName">Nom de l'article:</label>
+                    <input type="text" id="editExistenciaName" name="editExistenciaName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editExistenciaPrice">Preu per unitat:</label>
+                    <input type="number" id="editExistenciaPrice" name="editExistenciaPrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="editExistenciaQuantity">Quantitat:</label>
+                    <input type="number" id="editExistenciaQuantity" name="editExistenciaQuantity" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Canvis</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Taula per mostrar les existències -->
+    <table id="existenciaTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Preu / Unitat</th>
+                <th>Quantitat</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Les files es generaran dinàmicament amb JavaScript -->
+        </tbody>
+    </table>
+
+    <script src="{{ url_for('static', path='/js/script_existencias_page.js') }}"></script>
+</main>
+</body>
+</html>

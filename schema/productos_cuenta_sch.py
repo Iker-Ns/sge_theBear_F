@@ -3,7 +3,9 @@ def schema(producto_cuenta) -> dict:
         "id": producto_cuenta.id,
         "cuenta_id": producto_cuenta.cuenta_id,
         "producto_id": producto_cuenta.producto_id,
-        "cantidad": producto_cuenta.cantidad
+        "cantidad": producto_cuenta.cantidad,
+        "cuenta" : producto_cuenta.cuenta,
+        "existencia" : producto_cuenta.existencias,
     }
     return send_producto_cuenta
 
