@@ -1,5 +1,32 @@
 const API_URL = "api/clientes/";
 
+function displayDropdownRestaurants() {
+    fetch("api/restaurantes/")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const restaurantSelect = document.getElementById("addClientRestaurantId");
+            const editRestaurantSelect = document.getElementById("editClientRestaurantId");
+            restaurantSelect.innerHTML = '<option value="">-- Selecciona un restaurante --</option>';
+            editRestaurantSelect.innerHTML = '<option value="">-- Selecciona un restaurante --</option>';
+
+            data.Result.forEach((restaurant) => {
+                const option = document.createElement("option");
+                option.value = restaurant.id;
+                option.textContent = restaurant.nombre;
+                restaurantSelect.appendChild(option);
+                editRestaurantSelect.appendChild(option.cloneNode(true));
+            });
+        })
+        .catch((error) => {
+            console.error("Error al obtener los restaurantes:", error);
+        });
+}
+
 function deleteClient(id) {
     fetch(`${API_URL}${id}/`, {
         method: "DELETE",
@@ -178,3 +205,4 @@ addForm.onsubmit = async function (e) {
 };
 
 document.addEventListener("DOMContentLoaded", fetchClients);
+document.addEventListener("DOMContentLoaded", displayDropdownRestaurants);
